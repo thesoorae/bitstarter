@@ -25,6 +25,7 @@ var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
 var rest=require('restler');
+var outfile = "checks.txt";
 
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
@@ -91,6 +92,7 @@ if (program.url) {
 
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
+	fs.writeFileSync(outfile, outJson);
     console.log(outJson);
 }
 }
